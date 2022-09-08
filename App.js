@@ -5,10 +5,11 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import React, { useState } from "react";
+
+import RenderItem from "./components/renderItem";
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +51,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   item: {
     fontSize: 16,
@@ -119,17 +117,22 @@ export default function App() {
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.itemContainer}>
-      <Text>(item)</Text>
-      <Text style={styles.item}>{item.value}</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => onHandleModal(item.id)}
-      >
-        <Text style={styles.delete}>X</Text>
-      </TouchableOpacity>
-    </View>
+    // <View style={styles.itemContainer}>
+    //   <Text>(item)</Text>
+    //   <Text style={styles.item}>{item.value}</Text>
+    //   <TouchableOpacity
+    //     style={styles.button}
+    //     onPress={() => onHandleModal(item.id)}
+    //   >
+    //     <Text style={styles.delete}>X</Text>
+    //   </TouchableOpacity>
+    // </View>
+    <RenderItem 
+    key={item.id}
+    item={item} 
+    onPress={() => onHandleModal(item.id)} />
   );
+  
 
   const onHandleDeleteItem = (id) => {
     setTasks(tasks.filter((item) => item.id !== id));
